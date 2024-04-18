@@ -10,6 +10,7 @@ import SwiftUI
 struct CheckoutView: View {
     @State private var confirmationMessage = ""
     @State private var showingConfirmation = false
+    @State private var alertTitle = ""
     
     var order: Order
     
@@ -35,7 +36,7 @@ struct CheckoutView: View {
                 }
                 .padding()
             }
-            .alert("Thank you!", isPresented: $showingConfirmation) {
+            .alert(alertTitle, isPresented: $showingConfirmation) {
                 Button("OK") { }
             } message: {
                 Text(confirmationMessage)
@@ -48,6 +49,9 @@ struct CheckoutView: View {
     
     func placeOrder() async {
         guard let encoded = try? JSONEncoder().encode(order) else {
+            confirmationMessage = "Failed to encode order."
+           alertTitle = "Order Error"
+           showingConfirmation = true
             print("Failed to encode order")
             return
         }
@@ -61,8 +65,12 @@ struct CheckoutView: View {
             // handle the result
             let decodedOrder = try JSONDecoder().decode(Order.self, from: data)
             confirmationMessage = "Your order for \(decodedOrder.quantity)x \(Order.types[decodedOrder.type].lowercased()) cupcakes is on its way!"
+            alertTitle = "Thank you!"
             showingConfirmation = true
         } catch {
+            confirmationMessage = "Could not complete your order.\nError: \(error.localizedDescription)"
+            alertTitle = "Order Failed"
+            showingConfirmation = true
             print("Checkout failed: \(error.localizedDescription)")
         }
     }
