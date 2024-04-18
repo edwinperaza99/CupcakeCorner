@@ -38,10 +38,26 @@ class Order: Codable {
     var addSprinkles = false
     
 //    address information
-    var name = ""
-    var streetAddress = ""
-    var city = ""
-    var zip = ""
+    var name = "" {
+        didSet {
+            UserDefaults.standard.set(name, forKey: "name")
+        }
+    }
+    var streetAddress = "" {
+        didSet {
+            UserDefaults.standard.set(streetAddress, forKey: "streetAddress")
+        }
+    }
+    var city = "" {
+        didSet {
+            UserDefaults.standard.set(city, forKey: "city")
+        }
+    }
+    var zip = "" {
+        didSet {
+            UserDefaults.standard.set(zip, forKey: "zip")
+        }
+    }
     
     var nameIsValid: Bool {
         !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
@@ -85,5 +101,16 @@ class Order: Codable {
         }
 
         return cost
+    }
+    
+    func load() {
+        name = UserDefaults.standard.string(forKey: "name") ?? ""
+        streetAddress = UserDefaults.standard.string(forKey: "streetAddress") ?? ""
+        city = UserDefaults.standard.string(forKey: "city") ?? ""
+        zip = UserDefaults.standard.string(forKey: "zip") ?? ""
+    }
+    
+    init() {
+        load()
     }
 }
