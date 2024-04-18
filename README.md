@@ -3,9 +3,9 @@
 Cupcake Corner is an iOS app developed using SwiftUI, designed to streamline the process of ordering making online request on iOS devices. With a user-friendly interface and efficient navigation, Cupcake Corner allows users to select their favorite cupcake flavors, customize orders with special requests, and provide a delivery address.
 
 <div style="display: flex; justify-content: space-between;">
-    <img src="screenshots/CupcakeCorner_main.png" alt="Cupcake Corner Main Screen" width="33%"/>
-    <img src="screenshots/CupcakeCorner_checkout.png" alt="Customizing an Order" width="33%"/>
-    <img src="screenshots/CupcakeCorner_confirmation.png" alt="Checkout Screen" width="33%"/>
+    <img src="screenshots/CupcakeCorner_main.png" alt="Cupcake Corner Main Screen" width="32%"/>
+    <img src="screenshots/CupcakeCorner_checkout.png" alt="Customizing an Order" width="32%"/>
+    <img src="screenshots/CupcakeCorner_confirmation.png" alt="Checkout Screen" width="32%"/>
 </div>
 
 ## Features
